@@ -49,7 +49,7 @@ public class Main {
                 System.out.println("No reizigers found.");
             }
         } catch (SQLException e) {
-            System.err.println("[SQLException] De reizgers konden niet worden opgehaald: " + e.getMessage());
+            System.err.println("[SQLException] De reizigers konden niet worden opgehaald: " + e.getMessage());
         }
     }
 }
