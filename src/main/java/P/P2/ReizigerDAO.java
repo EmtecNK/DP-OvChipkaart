@@ -1,5 +1,6 @@
 package P.P2;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ReizigerDAO {
@@ -8,4 +9,5 @@ public interface ReizigerDAO {
     boolean delete(Reiziger reiziger);
     Reiziger findById(int id);
     List<Reiziger> findAll();
+    List<Reiziger> findByGbdatum(LocalDate geboortedatum);
 }

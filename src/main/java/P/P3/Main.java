@@ -1,4 +1,8 @@
-package P.P2;
+package P.P3;
+
+import P.P2.Reiziger;
+import P.P2.ReizigerDAO;
+import P.P2.ReizigerDAOPsql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -34,18 +38,9 @@ public class Main {
         System.out.println();
 
         // Zoek een reiziger op met de id
-        System.out.println("[Test] Reiziger met ID 77 word opgehaald");
+        System.out.println("[Test] Retrieving reiziger by ID 77");
         Reiziger fetchedReiziger = rdao.findById(77);
         System.out.println("Opgehaalde reiziger: " + fetchedReiziger);
-        System.out.println();
-
-        // Zoek reizigers op met geboortedatum
-        System.out.println("[Test] ReizigerDAO.findByGbdatum() met datum " + gbdatum);
-        List<Reiziger> reizigersByDate = rdao.findByGbdatum(java.sql.Date.valueOf(gbdatum).toLocalDate());
-        System.out.println("Gevonden reizigers met geboortedatum " + gbdatum + ":");
-        for (Reiziger r : reizigersByDate) {
-            System.out.println(r);
-        }
         System.out.println();
 
         // verwijder een reiziger uit de database
@@ -53,9 +48,6 @@ public class Main {
         rdao.delete(sietske);
         reizigers = rdao.findAll();
         System.out.println(reizigers.size() + " reizigers\n");
-
-
-
     }
 
     public static void main(String[] args) throws SQLException {
