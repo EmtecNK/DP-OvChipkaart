@@ -1,9 +1,5 @@
 package P.P3;
 
-import P.P2.Reiziger;
-import P.P2.ReizigerDAO;
-import P.P2.ReizigerDAOPsql;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -38,9 +34,18 @@ public class Main {
         System.out.println();
 
         // Zoek een reiziger op met de id
-        System.out.println("[Test] Retrieving reiziger by ID 77");
+        System.out.println("[Test] Reiziger met ID 77 word opgehaald");
         Reiziger fetchedReiziger = rdao.findById(77);
         System.out.println("Opgehaalde reiziger: " + fetchedReiziger);
+        System.out.println();
+
+        // Zoek reizigers op met geboortedatum
+        System.out.println("[Test] ReizigerDAO.findByGbdatum() met datum " + gbdatum);
+        List<Reiziger> reizigersByDate = rdao.findByGbdatum(java.sql.Date.valueOf(gbdatum).toLocalDate());
+        System.out.println("Gevonden reizigers met geboortedatum " + gbdatum + ":");
+        for (Reiziger r : reizigersByDate) {
+            System.out.println(r);
+        }
         System.out.println();
 
         // verwijder een reiziger uit de database
@@ -50,9 +55,28 @@ public class Main {
         System.out.println(reizigers.size() + " reizigers\n");
     }
 
+    private static void testAdresDAO(AdresDAO adao, ReizigerDAO rdao) throws SQLException {
+        System.out.println("\n---------- Test AdresDAO -------------");
+
+        List<Reiziger> reizigers = rdao.findAll();
+        System.out.println("[Test] AdresDAO.findByReiziger() geeft de volgende adressen:");
+        for (Reiziger r : reizigers) {
+            Adres a = adao.findByReiziger(r);
+            if (a != null) {
+                System.out.println(r + ", " + a);
+            } else {
+                System.out.println(r + " heeft geen adres.");
+            }
+        }
+        System.out.println();
+    }
+
+
     public static void main(String[] args) throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost/ovchip?user=postgres&password=fifaUT15");
         ReizigerDAO rdao = new ReizigerDAOPsql(connection);
+        AdresDAO adao = new AdresDAOPsql(connection);
         testReizigerDAO(rdao);
+        testAdresDAO(adao, rdao);
     }
 }

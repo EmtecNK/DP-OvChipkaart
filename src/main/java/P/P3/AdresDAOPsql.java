@@ -1,8 +1,5 @@
 package P.P3;
 
-import P.P2.Reiziger;
-import P.P2.ReizigerDAOPsql;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +11,6 @@ public class AdresDAOPsql implements AdresDAO {
 
     public AdresDAOPsql(Connection connection) {
         this.con = connection;
-        this.reizigerDAO = new ReizigerDAOPsql(connection);  // Assuming you want to instantiate it here.
     }
 
     @Override

@@ -1,13 +1,12 @@
 package P.P3;
-
-import P.P2.Reiziger;
-
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ReizigerDAO {
-    boolean save(P.P2.Reiziger reiziger);
-    boolean update(P.P2.Reiziger reiziger);
-    boolean delete(P.P2.Reiziger reiziger);
-    P.P2.Reiziger findById(int id);
+    boolean save(Reiziger reiziger);
+    boolean update(Reiziger reiziger);
+    boolean delete(Reiziger reiziger);
+    Reiziger findById(int id);
     List<Reiziger> findAll();
+    List<Reiziger> findByGbdatum(LocalDate geboortedatum);
 }
